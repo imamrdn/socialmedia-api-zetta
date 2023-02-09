@@ -20,5 +20,5 @@ Content-Type: application/json
     "message": "xixixi" 
 }
 
-# ###
-# DELETE http://localhost:5000/articles/2
+###
+DELETE http://localhost:5000/articles/63e4f1697537335610829a8c

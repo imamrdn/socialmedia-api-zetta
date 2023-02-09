@@ -99,7 +99,6 @@ const updateArticle = (req, res) => {
                 }
 
                 post.message = message
-
                 return post.save()
             }
         )
@@ -121,9 +120,44 @@ const updateArticle = (req, res) => {
         )
 }
 
+const deleteArticle = (req, res) => {
+    const postId = req.params.id
+
+    articlePost
+        .findById(postId)
+        .then(
+            post => {
+                if(!post) {
+                    const error = new Error('Article not found')
+                    error.errorStatus = 404
+                    throw error
+                }
+
+                return articlePost.findByIdAndRemove(postId)
+            }
+        )
+        .then(
+            result => {
+                res.json({
+                    message: "Delete article success",
+                    data: result
+                })
+            }
+        )
+        .catch( 
+            err => {
+                res.status(500).json({
+                    message: "Server Error",
+                    serverMessage: err
+                })
+            }
+        )
+}
+
 module.exports = {
     getAllArticles,
     getArticle, 
     createArticle,
-    updateArticle
+    updateArticle,
+    deleteArticle
 }
