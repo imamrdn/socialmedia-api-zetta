@@ -2,23 +2,23 @@
 GET http://localhost:5000/articles/
 
 ###
+GET http://localhost:5000/articles/63e4f1697537335610829a8c
+
+###
 POST http://localhost:5000/articles/
 Content-Type: application/json
 
 {
-    "message": "Hallo everyone",
-    "comment": "hallo ugha"
+    "message": "wkwkwkwkkw"
 }
 
-# ###
-# PATCH http://localhost:5000/articles/2
-# Content-Type: application/json
+###
+PUT http://localhost:5000/articles/63e4f1697537335610829a8c
+Content-Type: application/json
 
-# {
-#     "name" : "aldi",
-#     "email" : "aldi@gmail.com",
-#     "address" : "sleman"
-# }
+{
+    "message": "xixixi" 
+}
 
 # ###
 # DELETE http://localhost:5000/articles/2

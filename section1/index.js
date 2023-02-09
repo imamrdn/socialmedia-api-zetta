@@ -19,7 +19,7 @@ app.use('/articles', article)
 app.use('/comments', comment)
 
 mongoose
-    .connect('mongodb+srv://imamrd:iKEj8VpwPkt5gYBh@cluster0.r7wfhri.mongodb.net/article?retryWrites=true&w=majority')
+    .connect('mongodb+srv://imamrd:iKEj8VpwPkt5gYBh@cluster0.r7wfhri.mongodb.net/socialmedia?retryWrites=true&w=majority')
     .then(()=>{
         app.listen(5000, () => {
             console.log(`Server running on port 5000`)

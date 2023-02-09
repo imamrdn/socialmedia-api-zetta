@@ -1,41 +1,129 @@
-const getAllArticles = async (req, res) => {
-    const message = req.body.message
-    const comment = req.body.comment
-    try {
-        res.json({
-            message: "GET all articles success",
-            data: {
-                message: message,
-                comment: comment
+const articlePost = require('../models/article')
+const { post } = require('../routes/articles')
+
+const getAllArticles = (req, res) => {
+    articlePost
+        .aggregate([{
+            $lookup:
+            {
+                from:'comment',
+                localField:'comment',
+                foreignField:"_id",
+                as:'comm'
+            }}])
+        .then(    
+            result => {
+                res.json({
+                    message: "Get articles success",
+                    data: result
+                })
             }
-        })
-    } catch (error) {
-        res.status(500).json({
-            message: "Server Error",
-            serverMessage: error
-        })
-    }
+        )
+        .catch( 
+            err => {
+                res.status(500).json({
+                    message: "Server Error",
+                    serverMessage: err
+                })
+            }
+        )
 }
 
-const createArticle = async (req, res) => {
-    console.log('request: ', req.body)
-    try {
-        res.json({
-            message: "Create article success",
-            data: {
-                message: "Hallo everyone",
-                comment: "hallo ugha"
+const getArticle = (req, res) => {
+    const postId = req.params.id
+    
+    articlePost
+        .findById(postId)
+        .then(
+            result => {
+                if(!result) {
+                    const error = new Error('Article not found')
+                    error.errorStatus = 404
+                    throw error
+                }
+
+                res.json({
+                    message: "Get article success",
+                    data: result
+                })
             }
-        })
-    } catch (error) {
-        res.status(500).json({
-            message: "Server Error",
-            serverMessage: error
-        })
-    }
+        )
+        .catch( 
+            err => {
+                res.status(500).json({
+                    message: "Server Error",
+                    serverMessage: err
+                })
+            }
+        )
+}
+
+const createArticle = (req, res) => {
+    const message = req.body.message
+
+    const Posting = new articlePost({
+        message: message,
+        comment: {}
+    })
+
+    Posting
+        .save()
+        .then(
+            result => {
+                res.json({
+                    message: "Create article success",
+                    data: result
+                })
+            }
+        )
+        .catch( 
+            err => res.status(500).json({
+                message: "Server Error",
+                serverMessage: error
+            })
+        )
+}
+
+const updateArticle = (req, res) => {
+    const message = req.body.message
+    const postId = req.params.id
+
+    articlePost
+        .findById(postId)
+        .then(
+            post => {
+                if(!post) {
+                    const error = new Error('Article not found')
+                    error.errorStatus = 404
+                    throw error
+                }
+
+                post.message = message
+
+                return post.save()
+            }
+        )
+        .then(
+            result => {
+                res.json({
+                    message: "Update article success",
+                    data: result
+                })
+            }
+        )
+        .catch( 
+            err => {
+                res.status(500).json({
+                    message: "Server Error",
+                    serverMessage: err
+                })
+            }
+        )
 }
 
 module.exports = {
-    getAllArticles, 
-    createArticle
+    getAllArticles,
+    getArticle, 
+    createArticle,
+    updateArticle
 }
