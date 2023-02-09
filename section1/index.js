@@ -1,11 +1,12 @@
 const express = require('express')
-const articles = require('./routes/articles')
-const comments = require('./routes/comments')
+const articleRoutes = require('./routes/articles')
+const commentRoutes = require('./routes/comments')
 
 const app = express()
 
-app.use('/article', articles)
-app.use('/article', comments)
+app.use('/article', articleRoutes)
+app.use('/comment', commentRoutes)
 
-
-app.listen(5000);
+app.listen(5000, () => {
+    console.log(`Server running on port 5000`)
+});
