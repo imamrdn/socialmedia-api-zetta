@@ -23,11 +23,9 @@ const getAllComments = (req, res) => {
 
 const createComment = (req, res) => {
     const message = req.body.message
-    const postId = req.params.id
 
     const Posting = new commentPost({
-        message: message,
-        comment: postId
+        message: message
     })
 
     Posting
@@ -38,7 +36,7 @@ const createComment = (req, res) => {
                     message: "Create comment success",
                     data: {
                         message: message,
-                        comment: postId
+                        data: result
                     }
                 })
             }

@@ -5,10 +5,6 @@ const commentPost = new Schema({
     message: {
         type: String,
         required: true
-    },
-    comment: {
-        type: String,
-        required: true
     }
 }, {
     timestamps: true
