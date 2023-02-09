@@ -1,11 +1,12 @@
 const getAllArticles = async (req, res) => {
-    console.log('request: ', req.body)
+    const message = req.body.message
+    const comment = req.body.comment
     try {
         res.json({
             message: "GET all articles success",
             data: {
-                message: "Hallo everyone",
-                comment: "hallo ugha"
+                message: message,
+                comment: comment
             }
         })
     } catch (error) {
