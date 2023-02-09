@@ -1,5 +1,5 @@
 const articlePost = require('../models/article')
-const { post } = require('../routes/articles')
+const commentPost = require('../models/comment')
 
 const getAllArticles = (req, res) => {
     articlePost
@@ -62,8 +62,7 @@ const createArticle = (req, res) => {
     const message = req.body.message
 
     const Posting = new articlePost({
-        message: message,
-        comment: {}
+        message: message
     })
 
     Posting

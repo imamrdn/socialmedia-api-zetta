@@ -22,3 +22,27 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/articles/63e4f1697537335610829a8c
+
+# COMMENT ENDPOINT
+
+###
+GET http://localhost:5000/comments/
+
+###
+POST http://localhost:5000/comments/63e4f08f7537335610829a89
+Content-Type: application/json
+
+{
+    "message": "comment 2"
+}
+
+###
+PUT http://localhost:5000/comments/63e5100e6f5c6b99a77ed24e
+Content-Type: application/json
+
+{
+    "message": "xixixi" 
+}
+
+###
+DELETE http://localhost:5000/comments/63e50f7195e83c4e4dc94ba1

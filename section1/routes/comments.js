@@ -2,9 +2,9 @@ const express = require('express')
 const commentController = require('../controllers/comments')
 const router = express.Router()
 
-// router.get('/', commentController.getAllcomments)
-// router.post('/', commentController.createcomment)
-// router.patch('/:id', commentController.updatecomment)
-// router.delete('/:id', commentController.deletecomment)
+router.get('/', commentController.getAllComments)
+router.post('/:id', commentController.createComment)
+router.patch('/:id', commentController.updateComment)
+router.delete('/:id', commentController.deleteComment)
 
 module.exports = router

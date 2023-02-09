@@ -5,9 +5,6 @@ const articlePost = new Schema({
     message: {
         type: String,
         required: true
-    },
-    comment: {
-        type: Object
     }
 }, {
     timestamps: true
