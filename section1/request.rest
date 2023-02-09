@@ -1,0 +1,24 @@
+###
+GET http://localhost:5000/articles/
+
+###
+POST http://localhost:5000/articles/
+Content-Type: application/json
+
+{
+    "message": "Hallo everyone",
+    "comment": "hallo ugha"
+}
+
+# ###
+# PATCH http://localhost:5000/articles/2
+# Content-Type: application/json
+
+# {
+#     "name" : "aldi",
+#     "email" : "aldi@gmail.com",
+#     "address" : "sleman"
+# }
+
+# ###
+# DELETE http://localhost:5000/articles/2
